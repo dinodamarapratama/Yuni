@@ -78,8 +78,16 @@
   
   
   
-  function kurangKalori(){
-  alert("I am an alert box!");
+   function kurangKalori(){
+  
+   var select_aktivitas = $( "#daftarAktivitas option:selected" ).val();
+	var durasi =  document.getElementById("durasi").value ;
+	var berat =  document.getElementById("berat").value ;
+	
+	
+    nilai -= select_aktivitas  * berat * (durasi/60) ;
+    document.getElementById("jumlahKalori").innerHTML = nilai;
+	$.notify("OK","success");
   }
   
 
