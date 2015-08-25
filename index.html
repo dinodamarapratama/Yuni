@@ -59,8 +59,21 @@
   var nilai = 0;
   var arrayPull = [];
   
-  function tambahKalori(){
-  alert("I am an alert box!");
+  function tambahKalori(nilaiKalori){
+  $.notify("OK","success");
+    var kalori = document.getElementById("kalori").innerHTML;
+	var kaloriIMT = document.getElementById("kaloriIMT").innerHTML;
+    
+    nilai += nilaiKalori;
+    document.getElementById("jumlahKalori").innerHTML = nilai;
+    
+    if (nilai > Number(kalori)){
+      document.getElementById("status").innerHTML = "terpenuhi";
+    }
+	
+	if (nilai > Number(kaloriIMT)){
+      document.getElementById("status2").innerHTML = "terpenuhi";
+    }
   }
   
   
