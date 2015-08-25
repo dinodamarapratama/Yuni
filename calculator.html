@@ -25,7 +25,7 @@
 	
     <script>
   
-   $(document).ready(function() {
+  $(document).ready(function() {
     var daftarKalori  = document.getElementById('daftarKalori');
 	var daftarAktivitas  = document.getElementById('daftarAktivitas');
 
@@ -45,9 +45,100 @@
 
 		 }
         );
-		
   
 
+  var nilai = 0;
+  var arrayPull = [];
+  
+  function tambahKalori(nilaiKalori){
+  $.notify("OK","success");
+    var kalori = document.getElementById("kalori").innerHTML;
+	var kaloriIMT = document.getElementById("kaloriIMT").innerHTML;
+    
+    nilai += nilaiKalori;
+    document.getElementById("jumlahKalori").innerHTML = nilai;
+    
+    if (nilai > Number(kalori)){
+      document.getElementById("status").innerHTML = "terpenuhi";
+    }
+	
+	if (nilai > Number(kaloriIMT)){
+      document.getElementById("status2").innerHTML = "terpenuhi";
+    }
+  }
+  
+  
+  
+  function kurangKalori(){
+  
+   var select_aktivitas = $( "#daftarAktivitas option:selected" ).val();
+	var durasi =  document.getElementById("durasi").value ;
+	var berat =  document.getElementById("berat").value ;
+	
+	
+    nilai -= select_aktivitas  * berat * (durasi/60) ;
+    document.getElementById("jumlahKalori").innerHTML = nilai;
+	$.notify("OK","success");
+  }
+  
+  var IDkalori = '';
+  
+  function simpanKalori(){
+    var save = document.getElementById("saveAll").innerHTML ;
+    $.jStorage.set(IDkalori,save);
+    document.getElementById("info").innerHTML = "berhasil disimpan";
+    setTimeout(function() {
+      document.getElementById("info").innerHTML = "";
+    }, 1000);
+    
+  }
+  
+  
+		
+   function solusiKalori(){
+   arrayPull = [];
+   var jk = document.getElementById("jumlahKalori").innerHTML ;
+    var ki = document.getElementById("kaloriIMT").innerHTML ;
+	
+	var berat =  document.getElementById("berat").value ;
+
+	
+    if (jk > ki ){
+	
+    var result=_.filter(aktivitas, function(obj){
+	var kalori = (parseInt(jk) - (Number(obj.kkal) *  berat * (60/60))  );//errrrrrr
+	var kalori_aktivitas = (Number(obj.kkal) *  berat * (60/60));
+	var nama = obj.nama;
+	
+	        if(kalori >= ki ){
+	        arrayPull.push({nama,kalori,kalori_aktivitas });
+			console.log( arrayPull);
+			}
+          });
+		  var minKalori = (_.min(arrayPull, function(chr) { return chr.kalori;})); 
+		  console.log(minKalori);
+		  document.getElementById("solusi").innerHTML = "Anda kelebihan kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan : <b>" + minKalori.nama + "</b> (" + minKalori.kalori_aktivitas + " kkal/jam), Sehingga kalori harian untuk berat badan ideal anda menjadi " + minKalori.kalori.toFixed(2) + " kkal"  ;
+    }
+	
+	
+	
+	else {
+	var result=_.filter(list, function(obj){
+	var kalori = (Number(obj.kkal) + parseInt(jk));
+	var kalori_makanan = Number(obj.kkal);
+	var nama = obj.nama;
+	
+	
+	       if(kalori < ki ){
+	        arrayPull.push({nama,kalori,kalori_makanan});
+			}
+          }); 
+		  
+		  var maxKalori = (_.max(arrayPull, function(chr) { return chr.kalori;})); 
+		  console.log(maxKalori);
+		  document.getElementById("solusi").innerHTML = "Anda belum memenuhi kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan : <b>" + maxKalori.nama + "</b> (" + maxKalori.kalori_makanan + " kkal), Sehingga kalori harian untuk berat badan ideal anda menjadi " + maxKalori.kalori.toFixed(2) + " kkal"   ;
+	}
+  }
 </script>
 
 </head>
