@@ -75,41 +75,7 @@
 }
 
 </style>
- <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-		
-		 <script type="text/javascript" charset="utf-8">
-
-
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-      
-        function onDeviceReady() {
-       
-        }
-        
-        
-        
  
-function doClose() {
-		navigator.notification.confirm(
-			'Keluar dari Aplikasi?',
-			exitApp,
-			'Kalkulator Gizi',
-			'Ok,Cancel'
-		);
-	}
-	
-	function exitApp(buttonIndex) {
-			if (buttonIndex == 1) {
-			navigator.app.exitApp();
-			}
-		else {
-			window.close();
-		}
-	}
-	
-
-        </script>
 </head>
 <body>
 	<div class="header box css3-shadow" id="head">
