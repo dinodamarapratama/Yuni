@@ -112,8 +112,15 @@ function solusiKalori(){
 	
     if ( Number(jk) > Number(ki) ){
 	
-    
+    var result=_.filter(aktivitas, function(obj){
+	var kalori = (parseInt(jk) - (Number(obj.kkal) *  berat * (60/60))  );
+	var kalori_aktivitas = (Number(obj.kkal) *  berat * (60/60));
+	var nama = obj.nama;
+	
+          });
+		
 	}
+	else { alert("I am an alert box!");}
 	
 
   }	
