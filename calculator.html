@@ -33,14 +33,12 @@
      daftarKalori.innerHTML += '<tr>'+'<td>'+list[i].nama+'</td>'+'<td>'+list[i].kkal+' kkal <br> <button onclick="tambahKalori('+list[i].kkal+');">'+"Tambah"+'</button></td></tr>';
                                
     }
-
-	     //membuat ID dengan tanggal untuk ID local storage		
            
            var d = new Date();
            var m = d.getMonth();
            var y = d.getFullYear();         
            var x = d.getDate();        
-           IDkalori = x+"."+m+"."+y;
+           document.getElementById("tanggal").innerHTML = x+"."+m+"."+y;
            
     
            
@@ -49,16 +47,54 @@
           
 		  }
 
-		 }
-        );
+		 });
   
+
+  
+</script>
+
+<script>
+
 
   var nilai = 0;
   var arrayPull = [];
+  
+  function tambahKalori(nilaiKalori){
+  $.notify("OK","success");
+    var kalori = document.getElementById("kalori").innerHTML;
+	var kaloriIMT = document.getElementById("kaloriIMT").innerHTML;
     
+    nilai += nilaiKalori;
+    document.getElementById("jumlahKalori").innerHTML = nilai;
+    
+    if (nilai > Number(kalori)){
+      document.getElementById("status").innerHTML = "terpenuhi";
+    }
+	
+	if (nilai > Number(kaloriIMT)){
+      document.getElementById("status2").innerHTML = "terpenuhi";
+    }
+  }
+  
+  
+  
+  function kurangKalori(){
+  
+   var select_aktivitas = $( "#daftarAktivitas option:selected" ).val();
+	var durasi =  document.getElementById("durasi").value ;
+	var berat =  document.getElementById("berat").value ;
+	
+	
+    nilai -= select_aktivitas  * berat * (durasi/60) ;
+    document.getElementById("jumlahKalori").innerHTML = nilai;
+	$.notify("OK","success");
+  }
+  
+
   
   function simpanKalori(){
     var save = document.getElementById("saveAll").innerHTML ;
+	var IDkalori = document.getElementById("tanggal").innerHTML ;
     $.jStorage.set(IDkalori,save);
     document.getElementById("info").innerHTML = "berhasil disimpan";
     setTimeout(function() {
@@ -112,7 +148,6 @@
 		  document.getElementById("solusi").innerHTML = "Anda belum memenuhi kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan : <b>" + maxKalori.nama + "</b> (" + maxKalori.kalori_makanan + " kkal), Sehingga kalori harian untuk berat badan ideal anda menjadi " + maxKalori.kalori.toFixed(2) + " kkal"   ;
 	}
   }
-  
 </script>
 
 </head>
@@ -187,7 +222,7 @@
                                 <div class="col-lg-12">
 								<br/>
                                     <div name="bmr_calc1" >  
-									
+									<p id="tanggal"></p>
 										<div class="form-group">
                                             <label>Jenis Kelamin</label>
                                             <select id="jenis_kelamin" name="jenis_kelamin"class="form-control">
