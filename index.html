@@ -92,56 +92,20 @@
   
 
   
-  function simpanKalori(){
-    alert("I am an alert box!");
+   function simpanKalori(){
+    var save = document.getElementById("saveAll").innerHTML ;
+	var IDkalori = document.getElementById("tanggal").innerHTML ;
+    $.jStorage.set(IDkalori,save);
+    document.getElementById("info").innerHTML = "berhasil disimpan";
+    setTimeout(function() {
+      document.getElementById("info").innerHTML = "";
+    }, 1000);
   }
+  
   
   
 		
-   function solusiKalori(){
-   arrayPull = [];
-   var jk = document.getElementById("jumlahKalori").innerHTML ;
-    var ki = document.getElementById("kaloriIMT").innerHTML ;
-	
-	var berat =  document.getElementById("berat").value ;
-
-	
-    if (jk > ki ){
-	
-    var result=_.filter(aktivitas, function(obj){
-	var kalori = (parseInt(jk) - (Number(obj.kkal) *  berat * (60/60))  );//errrrrrr
-	var kalori_aktivitas = (Number(obj.kkal) *  berat * (60/60));
-	var nama = obj.nama;
-	
-	        if(kalori >= ki ){
-	        arrayPull.push({nama,kalori,kalori_aktivitas });
-			console.log( arrayPull);
-			}
-          });
-		  var minKalori = (_.min(arrayPull, function(chr) { return chr.kalori;})); 
-		  console.log(minKalori);
-		  document.getElementById("solusi").innerHTML = "Anda kelebihan kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan : <b>" + minKalori.nama + "</b> (" + minKalori.kalori_aktivitas + " kkal/jam), Sehingga kalori harian untuk berat badan ideal anda menjadi " + minKalori.kalori.toFixed(2) + " kkal"  ;
-    }
-	
-	
-	
-	else {
-	var result=_.filter(list, function(obj){
-	var kalori = (Number(obj.kkal) + parseInt(jk));
-	var kalori_makanan = Number(obj.kkal);
-	var nama = obj.nama;
-	
-	
-	       if(kalori < ki ){
-	        arrayPull.push({nama,kalori,kalori_makanan});
-			}
-          }); 
-		  
-		  var maxKalori = (_.max(arrayPull, function(chr) { return chr.kalori;})); 
-		  console.log(maxKalori);
-		  document.getElementById("solusi").innerHTML = "Anda belum memenuhi kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan : <b>" + maxKalori.nama + "</b> (" + maxKalori.kalori_makanan + " kkal), Sehingga kalori harian untuk berat badan ideal anda menjadi " + maxKalori.kalori.toFixed(2) + " kkal"   ;
-	}
-  }
+   
   
 </script>
 
