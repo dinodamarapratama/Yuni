@@ -75,9 +75,41 @@
 }
 
 </style>
-
+ <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		
+		 <script type="text/javascript" charset="utf-8">
+
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+      
+        function onDeviceReady() {
+       
+        }
+        
+        
+        
+ 
+function doClose() {
+		navigator.notification.confirm(
+			'Keluar dari Aplikasi?',
+			exitApp,
+			'Cari Taksi',
+			'Ok,Cancel'
+		);
+	}
 	
+	function exitApp(buttonIndex) {
+			if (buttonIndex == 1) {
+			navigator.app.exitApp();
+			}
+		else {
+			window.close();
+		}
+	}
+	
+
+        </script>
 </head>
 <body>
 	<div class="header box css3-shadow" id="head">
@@ -93,68 +125,29 @@
 	</div>
 </div>
 <!--start-slider-->
-	<div class="slider-bg">
-		<div class="container">
-			<div class="grid-1">
-				<div class="col-md-5 left-grid-1 wow bounceInLeft" data-wow-delay="0.4s">
-					<h1>Kalkulator</h1>	
-					<h2>Kalori</h2>
-				</div>
-				<div class="col-md-7 right-grid-1 wow bounceInRight" data-wow-delay="0.7s">
-					<div class="slider">
-						<div class="callbacks_container">
-								<ul class="rslides" id="slider">
-									<li>
-									<img src="images/slide.jpg" class="img-responsive" alt="" />
-									</li>
-								 </ul>
-							</div>
-						</div>
-					</div>	
-				 </script><script src="js/responsiveslides.min.js"></script>
-						   <script>
-					    $(function () {
-					      $("#slider").responsiveSlides({
-					      	auto: true,
-					      	nav: true,
-					      	speed: 500,
-					        namespace: "callbacks",
-					        pager: true,
-					      });
-					    });
-					  </script>
-
-                    </div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
 <!--//end-slider-->
 	
-	<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 center">
-           
-            <a href="calculator.html" class="myButton">Kalkulator Kalori</a>
-                         
-        </div>
-		<div  class="col-xs-12 col-sm-6 col-md-6 center">
-           
-             <a href="notes.html" class="myButton">Catatan</a>
-                   
-        </div>
-		<div  class="col-xs-12 col-sm-6 col-md-6 center">
-           
-             <a href="tips_menu.html" class="myButton">Tips</a>
-                         
-        </div>
-		<div  class="col-xs-12 col-sm-6 col-md-6 center">
-           
-             <a href="about.html" class="myButton">Tentang</a>
-                         
-        </div>
-		
-      
-    </div>
+	<div class="container"><br>
+    <p style="text-align: center;"><strong><span style="color: #000000;">Aplikasi Kalkulator Kalori</span></strong></p>
+    <img src="images/logo-gunadrma.jpg" width="100%" />
+<p><br>
+</p>
+
+<p style="text-align: center;"><span style="color: #000000; line-height: 22.3999996185303px;"><span style="color: #B8312F;">Aplikasi ini bertujuan untuk membantu pengguna memenuhi kalori seimbang dalam kehidupan sehari hari</p>
+
+
+<p style="text-align: center;"><br>
+</p>
+
+<p style="text-align: center;"><span style="color: #000000;">BY	 Yuni Putri Wulan Sari</span></p><br>
+
+
+<p style="text-align: center;"><br>
+</p>
+
+
+
+
 </div>
 
 
