@@ -101,32 +101,72 @@
   }
   
   function solusiKalori(){
-  
-  }
-  /*
-function solusiKalori(){
-
    arrayPull = [];
    var jk = document.getElementById("jumlahKalori").innerHTML ;
     var ki = document.getElementById("kaloriIMT").innerHTML ;
+	
 	var berat =  document.getElementById("berat").value ;
 
 	
-    if ( Number(jk) > Number(ki) ){
+    if (parseInt(jk) > ki ){
 	
     var result=_.filter(aktivitas, function(obj){
-	var kalori = (parseInt(jk) - (Number(obj.kkal) *  berat * (60/60))  );
+	var kalori = (parseInt(jk) - (Number(obj.kkal) *  berat * (60/60))  );//errrrrrr
 	var kalori_aktivitas = (Number(obj.kkal) *  berat * (60/60));
 	var nama = obj.nama;
-	alert("1!")
-
+	arrayPull.push({nama,kalori,kalori_aktivitas });
+	      
     });
-		
+	solusiKalori_1(); 
+   }
+	
+	
+	
+	if (parseInt(jk) < ki ){
+	var result=_.filter(list, function(obj){
+	var kalori = (Number(obj.kkal) + parseInt(jk));
+	var kalori_makanan = Number(obj.kkal);
+	var nama = obj.nama;
+	arrayPull.push({nama,kalori,kalori_makanan});
+	}); 
+	solusiKalori_2();  
 	}
-	else { alert("I am an alert box!");}
+  }
+  
+  function solusiKalori_2(){
+  
+  var ki = document.getElementById("kaloriIMT").innerHTML ;
+  document.getElementById("solusi").innerHTML = "Anda belum memenuhi kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan rekomendasi makanan sebagai berikut : " ;
+  
+  for(var i=0;i<arrayPull.length ;i++) {
+    
+	if ( arrayPull[i].kalori > Number(ki) ) {
+	 
+	document.getElementById("solusi").innerHTML += "<br><br><b>" + arrayPull[i].nama + "</b> (" + arrayPull[i].kalori_makanan + " kkal), Sehingga kalori harian untuk berat badan ideal anda menjadi " + arrayPull[i].kalori.toFixed(2) + " kkal"  
+
+	} 	
+    }
+
+  }
+  
+  function solusiKalori_1(){
+  
+  var ki = document.getElementById("kaloriIMT").innerHTML ;
+  document.getElementById("solusi").innerHTML = "Anda kelebihan kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan rekomendasi aktivitas sebagai berikut : " ;
+  
+  for(var i=0;i<arrayPull.length ;i++) {
+    
+	if ( arrayPull[i].kalori > Number(ki) ) {
+	 
+	document.getElementById("solusi").innerHTML += "<br><br><b>" + arrayPull[i].nama + "</b> (" + arrayPull[i].kalori_aktivitas + " kkal), Sehingga kalori harian untuk berat badan ideal anda menjadi " + arrayPull[i].kalori.toFixed(2) + " kkal"  
+
+	} 	
+    }
+
+  }
 	
 
-  }	 */
+  	
    
   
 </script>
@@ -291,11 +331,12 @@ function solusiKalori(){
 					<div> <label>Jumlah kalori yang dibutuhkan untuk berat badan ideal : </label> <p id="kaloriIMT">0</p></div><hr>
 					<div> <label>Status untuk berat badan ideal: </label> <p id="status2">belum terpenuhi</p></div><hr>
 					<div> <label>jumlah kalori hari ini :</label> <p id="jumlahKalori">0</p></div><hr>
-					<div> <label>Solusi :</label> <p id="solusi"></p></div><hr>
+					
 					</div>
 					<button onclick="solusiKalori()" class="btn btn-default" >Solusi</button>
 					<button onclick="simpanKalori()" class="btn btn-default">Simpan</button>
 					<br/><p id="info"></p>
+					<hr><div> <label>Solusi :</label> <p id="solusi"></p></div>
                                 </div>
 								
                      <div class="tab-pane fade" id="messages-pills"><br/>

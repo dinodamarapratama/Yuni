@@ -4,7 +4,7 @@
    xmlns:android = "http://schemas.android.com/apk/res/android"
    id = "com.phonegap.kkalcalc" 
    version = "1.0.0">
-   <name>Kalkulator Kalori</name>  
+   <name>Kal2</name>  
    <description>
 
    </description>
