@@ -113,10 +113,15 @@
 	var kalori = (parseInt(jk) - (Number(obj.kkal) *  berat * (60/60))  );//errrrrrr
 	var kalori_aktivitas = (Number(obj.kkal) *  berat * (60/60));
 	var nama = obj.nama;
-	//arrayPull.push({nama,kalori,kalori_aktivitas });
+	document.getElementById("solusi").innerHTML = "Anda kelebihan kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan rekomendasi aktivitas sebagai berikut : " ;
+  
+	
+	if (kalori >= ki ){
+	       document.getElementById("solusi").innerHTML += "<br><br><b>" + nama + "</b> (" + kalori_aktivitas + " kkal), Sehingga kalori harian untuk berat badan ideal anda menjadi " + kalori.toFixed(2) + " kkal"  ;
+	}
 	      
     });
-	solusiKalori_1(); 
+	//solusiKalori_1(); 
    }
 	
 	
@@ -126,9 +131,13 @@
 	var kalori = (Number(obj.kkal) + parseInt(jk));
 	var kalori_makanan = Number(obj.kkal);
 	var nama = obj.nama;
-	//arrayPull.push({nama,kalori,kalori_makanan});
+	document.getElementById("solusi").innerHTML = "Anda belum memenuhi kebutuhan kalori harian untuk berat badan ideal, sehingga anda membutuhkan rekomendasi makanan sebagai berikut : " ;
+  
+	if (kalori < ki ){
+	   document.getElementById("solusi").innerHTML += "<br><br><b>" + nama + "</b> (" + kalori_makanan + " kkal), Sehingga kalori harian untuk berat badan ideal anda menjadi " + kalori.toFixed(2) + " kkal"  
+	}
 	}); 
-	solusiKalori_2();  
+	//solusiKalori_2();  
 	}
   }
  
